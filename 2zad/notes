@@ -1,0 +1,7 @@
+Polskie znaki w komentarzach:
+# -*- coding: utf-8 -*-
+
+macierze substytucji aminokwasów (kary/nagrody za mutację):
+from Bio.SubstMat import MatrixInfo
+
+MatrixInfo.blosum62['Z','Q'] == kara za zamianę akwasu Z na Q
