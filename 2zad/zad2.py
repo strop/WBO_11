@@ -1,4 +1,20 @@
 # -*- coding: utf-8 -*-
+
+
+def hit(random, mu):
+  return random.random() <= mu;
+
+def mutate(nucleo)
+
+def mutated_DNA(seq, n = 1, mu = 0.5):
+  for i in range(n):
+    for 
+
+
+
+
+
+
 from Bio import Entrez
 def fetch():
 	#put your own email here
