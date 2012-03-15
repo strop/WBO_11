@@ -1,19 +1,43 @@
 # -*- coding: utf-8 -*-
+import random
+import math
+from Bio import SeqIO
+from Bio import Seq
 
+def hit(rand, mu):
+  return rand.random() <= mu;
 
-def hit(random, mu):
-  return random.random() <= mu;
+def mutate(pos, seq):
+  print "Mutating " + str(seq[pos]) + " into ", 
+  try:
+    other = [x for x in seq.alphabet]
+  except Exception: # nasza sekwencja nie ma alfabetu, albo jest pusty
+    other = ['A', 'T', 'G', 'C'] # więc markujemy DNA
+  other.remove(seq[pos])
+  result = random.Random().choice(other)
+  print str(result)
+  return result
 
-def mutate(nucleo)
+def gen_random_dna(alphabet, l = 100):
+  try:
+    chars = [x for x in alphabet.letters]
+  except Exception:
+    chars = ['A', 'T', 'G', 'C']
+  return Seq.Seq(''.join(random.Random().sample(chars*int(math.ceil(float(l)/float(len(chars)))), l)), alphabet)
 
 def mutated_DNA(seq, n = 1, mu = 0.5):
+  rand = random.Random()
+  s = seq.tomutable()
   for i in range(n):
-    for 
+    for x in range(len(s)):
+      if hit(rand, mu):
+        s[x] = mutate(x, s)
+  return gen_random_dna(s.alphabet) + s + gen_random_dna(s.alphabet)
 
-
-
-
-
+def make_test_samples(seq, n = 1, mu = 0.5):
+  s1 = mutated_DNA(seq, n, mu)
+  s2 = mutated_DNA(seq, n, mu)
+  return [s1,s2]
 
 from Bio import Entrez
 def fetch():
@@ -31,7 +55,6 @@ def fetch():
 	SeqIO.write(seqs, open("hemoglobin", "w"), "fasta") 
 
 #or rather parse them
-from Bio import SeqIO
 from Bio import pairwise2
 from Bio.SubsMat import MatrixInfo
 from Bio.Data import CodonTable
@@ -67,7 +90,7 @@ class Direction:
   Left, Top, Diag, Start = range(4)
 
 def codon_at(seq, pos):
-  return seq[pos:pos+3]
+  return seq[pos:pos+3].tostring()
 
 def translate(codon, table):
   return table[codon]
@@ -129,7 +152,7 @@ def backtrack(scores, bestScore, s1, s2):
       raise Exception("Nieprawidlowy kierunek")
   return (recovered1, recovered2)
 
-def align_coding(seq1, seq2, codon_table = def_codon_table, subst_mat = def_subst_mat, d = -0.5, alpha = -0.5):
+def align_coding(seq1, seq2, codon_table = def_codon_table, subst_mat = def_subst_mat, d = -7, alpha = 1):
   (s1, s2) = (seq1, seq2)
   bestScore = (0,0)
   scores = [ [(0, Direction.Start, False) for x in range(len(s1)+3)] for x in range(len(s2)+3) ] # budujemy pustą macierz uliniowienia
