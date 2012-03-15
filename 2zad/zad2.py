@@ -132,9 +132,9 @@ def backtrack(scores, bestScore, s1, s2):
 def align_coding(seq1, seq2, codon_table = def_codon_table, subst_mat = def_subst_mat, d = -0.5, alpha = -0.5):
   (s1, s2) = (seq1, seq2)
   bestScore = (0,0)
-  scores = [ [(0, Direction.Start, False) for x in range(len(s1))] for x in range(len(s2)) ] # budujemy pustą macierz uliniowienia
-  for x in range(3, len(s2)):
-    for y in range(3, len(s1)):
+  scores = [ [(0, Direction.Start, False) for x in range(len(s1)+3)] for x in range(len(s2)+3) ] # budujemy pustą macierz uliniowienia
+  for x in range(3, len(s2)+3):
+    for y in range(3, len(s1)+3):
       myResult = (0, Direction.Start, False)
       # z lewej:
       if wasStop(scores, x, y-3):
