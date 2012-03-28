@@ -1,0 +1,14 @@
+- po iteracji ma się nam zmniejszyć najdłuższa krawędź
+
+- największa odległość to najmniejsze podobieństwo
+
+- usuwać kolumny samych spacji po rozcięciu drzewa
+
+1. neighbour joining sąsiednich sekwencji tworzy drzewo
+   największy dystans to najmniejsze podobieństwo
+   przy porównywaniu dwóch sekwencji uważać na miejsca ze spacjami w obu
+   
+2. rozcinamy po najdłuższej krawędzi
+3. usuwamy z obu profili kolumny samych spacji
+4. uliniawiamy licząc sumę wszystkich skorów pomiędzy profilami
+5. liczymy z powrotrem dystanse, jeśli największy dystans się nie zmniejszył, to kończymy i zwracamy uliniowienie, jeśli się zmniejszył to wracamy do 2.
