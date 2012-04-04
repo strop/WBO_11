@@ -1,0 +1,9 @@
+1) Zbadać częstość występowania poszczególnych symboli w stanie promotorowym z gotowego pliku ze strony
+   Mierzyć symbole jako pojedyncze, podwójne i potrójne znaki
+
+
+2) Zbadać częstość występowania znaków w całym genomie (średnia) - to jest macierz emisji stanu "zwykłego"
+3) Prawdopodobieństwo przejścia pomiędzy stanami można przybliżać BaumemWelshem  - optymalizując model z jakimiś losowymi prawdopodobieństwami przejścia
+   Albo przez stosunek długości odcinków promotorowych do całego genomu (pobrać z genbanku)
+
+4) Z uzyskanych macierzy prawdopodobieństwa emisji w stanie zwykłym i promotorowym robimy UMM i odpalamy viterbiego na interesującej sekwencji, żeby otrzymać prawdopodobne fragmenty promotorowe
